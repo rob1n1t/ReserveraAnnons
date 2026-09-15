@@ -4,7 +4,10 @@ using System.Text;
 
 namespace ReserveraAnnons
 {
-    internal class AnnonsStatus
+    public enum AnnonsStatus
     {
+        TillSalu,
+        Reserverad,
+        Sald
     }
 }

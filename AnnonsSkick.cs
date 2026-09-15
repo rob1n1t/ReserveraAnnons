@@ -4,7 +4,10 @@ using System.Text;
 
 namespace ReserveraAnnons
 {
-    internal class AnnonsSkick
+    public enum AnnonsSkick
     {
+        Nyskick,
+        BraSkick,
+        Slitet
     }
 }

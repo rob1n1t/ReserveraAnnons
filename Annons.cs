@@ -14,7 +14,13 @@ namespace ReserveraAnnons
         public DateTime Publiceringsdatum { get; private set; }
         public AnnonsStatus Status { get; private set; }
 
-        protected Annons (Student saljare, Kurs kurs, string titel, decimal pris, AnnonsSkick skick, DateTime publiceringsdatum)
+        protected Annons(
+            Student saljare, 
+            Kurs kurs, 
+            string titel, 
+            decimal pris, 
+            AnnonsSkick skick, 
+            DateTime publiceringsdatum)
         {
             Saljare = saljare;
             Kurs = kurs;
@@ -25,7 +31,7 @@ namespace ReserveraAnnons
             Status = AnnonsStatus.TillSalu;
         }
 
-        public bool KanReserverasAv (Student kopare)
+        public bool KanReserverasAv(Student kopare)
         {
             return Status == AnnonsStatus.TillSalu && kopare != Saljare;
         }

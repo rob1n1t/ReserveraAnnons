@@ -9,7 +9,15 @@ namespace ReserveraAnnons
         public string Filformat { get; private set; }
         public string Leveranssatt { get; private set; }
 
-        public DigitalResurs(Student saljare, Kurs kurs, string titel, decimal pris, AnnonsSkick skick, DateTime publiceringsdatum, string filformat, string leveranssatt)
+        public DigitalResurs(
+            Student saljare, 
+            Kurs kurs, 
+            string titel, 
+            decimal pris, 
+            AnnonsSkick skick, 
+            DateTime publiceringsdatum, 
+            string filformat, 
+            string leveranssatt)
             : base(saljare, kurs, titel, pris, skick, publiceringsdatum)
         {
             Filformat = filformat;
