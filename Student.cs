@@ -4,7 +4,23 @@ using System.Text;
 
 namespace ReserveraAnnons
 {
-    internal class Student
+    public class Student
     {
+        public string Fornamn { get; private set; }
+        public string Efternamn { get; private set; }
+        public string Epostadress { get; private set; }
+        public string Telefonnummer { get; private set; }
+
+        public Student(
+            string fornamn,
+            string efternamn,
+            string epostadress,
+            string telefonnummer)
+        {
+            Fornamn = fornamn;
+            Efternamn = efternamn;
+            Epostadress = epostadress;
+            Telefonnummer = telefonnummer;
+        }
     }
 }
