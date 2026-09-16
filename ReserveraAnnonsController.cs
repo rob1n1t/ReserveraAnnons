@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ReserveraAnnons
 {
-    internal class BokswapRegister
+    internal class Class1
     {
     }
 }
