@@ -20,11 +20,11 @@ namespace ReserveraAnnons
             return Register.HamtaTillgangligaAnnonser(InloggadStudent);
         }
 
-        public Affar ReserveraAnnons(Annons validAnnons)
+        public Affar ReserveraAnnons(Annons valdAnnons)
         {
             Affar nyAffar = new Affar(InloggadStudent, validAnnons, DateTime.Now);
 
-            validAnnons.MarkeraSomReserverad();
+            valdAnnons.MarkeraSomReserverad();
             Register.LaggTillAffar(nyAffar);
 
             return nyAffar;

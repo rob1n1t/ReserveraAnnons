@@ -4,19 +4,20 @@ using System.Text;
 
 namespace ReserveraAnnons
 {
-    public class BokswapRegister
+    public class BookSwapRegister
     {
         private List<Annons> Annonser { get; }
         private List<Affar> Affarer { get; }
 
         // Konstruktor
-        public BokswapRegister()
+        public BookSwapRegister()
         {
             Annonser = new List<Annonser>();
-            Affarer = new List<Affarer>();
+            Affar = new List<Affarer>();
         }
 
         // Annons är klassen, nyAnnons är variabelnamnet på objektet
+        // Används innan användningsfallet påbörjas för att lägga till testdata
         public void LaggTillAnnons(Annons nyAnnons)
         {
             Annonser.add(annons);
@@ -29,8 +30,8 @@ namespace ReserveraAnnons
 
             foreach (Annons aktuellAnnons in Annonser)
             {
-                bool arTillSalu = aktuellAnnons.Status == AnnonsStatus.TillSalu;
-                bool kanReserveras = aktuellAnnons.KanReserverasAv(kopare);
+                bool arTillSalu = aktuellAnnons.Status == AnnonsStatus.TillSalu; //
+                bool kanReserveras = aktuellAnnons.KanReserverasAv(kopare);  // se så köpare och säljare ej är samma person 
 
                 if (arTillSalu && kanReserveras)
                 {

@@ -4,6 +4,7 @@ using System.Text;
 
 namespace ReserveraAnnons
 {
+    // man kan inte skapa ett objekt av klassen Annons när den är abstrakt
     public abstract class Annons
     {
         public Student Saljare { get; private set; }
