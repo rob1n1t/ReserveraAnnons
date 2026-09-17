@@ -12,15 +12,15 @@ namespace ReserveraAnnons
         // Konstruktor
         public BookSwapRegister()
         {
-            Annonser = new List<Annonser>();
-            Affar = new List<Affarer>();
+            Annonser = new List<Annons>();
+            Affarer = new List<Affar>();
         }
 
         // Annons är klassen, nyAnnons är variabelnamnet på objektet
         // Används innan användningsfallet påbörjas för att lägga till testdata
         public void LaggTillAnnons(Annons nyAnnons)
         {
-            Annonser.add(annons);
+            Annonser.Add(nyAnnons);
         }
 
         // Metod ska ge tillbaka en lista med Annons-objekt.

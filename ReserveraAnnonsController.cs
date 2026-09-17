@@ -22,7 +22,7 @@ namespace ReserveraAnnons
 
         public Affar ReserveraAnnons(Annons valdAnnons)
         {
-            Affar nyAffar = new Affar(InloggadStudent, validAnnons, DateTime.Now);
+            Affar nyAffar = new Affar(InloggadStudent, valdAnnons, DateTime.Now);
 
             valdAnnons.MarkeraSomReserverad();
             Register.LaggTillAffar(nyAffar);
