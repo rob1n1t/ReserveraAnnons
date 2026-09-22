@@ -4,20 +4,15 @@
     {
         static void Main(string[] args)
         {
-            Student kopare = new Student(
-                "Erik",
-                "Eriksson",
-                "erik@example.com",
-                "070-4444444");
-
+            Student kopare = new Student("Adam","Andersson","adam00@gmail.com","070-1234567");
             BookSwapRegister register = SkapaStartregister(kopare);
+            ReserveraAnnonsController controller = new ReserveraAnnonsController(register, kopare);
 
-            ReserveraAnnonsController controller =
-                new ReserveraAnnonsController(register, kopare);
+            bool running = true;
 
-            bool programmetKor = true;
+            List<Annons> tillgangligaAnnonser = new List<Annons>();
 
-            while (programmetKor)
+            while (running)
             {
                 VisaMeny();
 
@@ -25,31 +20,20 @@
 
                 if (!int.TryParse(menyInput, out int menyval))
                 {
-                    Console.WriteLine("Menyvalet måste vara ett heltal.");
+                    Console.WriteLine("Ditt val måste vara ett heltal.");
                     continue;
                 }
 
                 switch (menyval)
                 {
                     case 1:
-                        List<Annons> tillgangligaAnnonser =
-                            controller.ListaTillgangligaAnnonser();
-
+                        Console.WriteLine("Du valde: Lista tillgängliga annonser.");
+                        tillgangligaAnnonser = controller.ListaTillgangligaAnnonser();
                         VisaAnnonser(tillgangligaAnnonser);
                         break;
 
                     case 2:
-                        List<Annons> annonserAttValja =
-                            controller.ListaTillgangligaAnnonser();
-
-                        if (annonserAttValja.Count == 0)
-                        {
-                            Console.WriteLine("Det finns inga tillgängliga annonser.");
-                            break;
-                        }
-
-                        VisaAnnonser(annonserAttValja);
-
+                        Console.WriteLine("Du valde: Reservera annons.");
                         Console.Write("Ange numret på annonsen du vill reservera: ");
                         string annonsInput = Console.ReadLine() ?? "";
 
@@ -59,38 +43,24 @@
                             break;
                         }
 
-                        if (annonsnummer < 1 ||
-                            annonsnummer > annonserAttValja.Count)
+                        if (annonsnummer < 1 || annonsnummer > tillgangligaAnnonser.Count)
                         {
                             Console.WriteLine("Det numret motsvarar ingen annons.");
                             break;
                         }
 
-                        Annons valdAnnons =
-                            annonserAttValja[annonsnummer - 1];
-
-                        try
-                        {
-                            Affar affar =
-                                controller.ReserveraAnnons(valdAnnons);
-
-                            VisaReservationsbekraftelse(affar);
-                        }
-                        catch (InvalidOperationException)
-                        {
-                            Console.WriteLine(
-                                "Annonsen kunde inte reserveras.");
-                        }
-
+                        Annons valdAnnons = tillgangligaAnnonser[annonsnummer - 1];
+                        Affar affar = controller.ReserveraAnnons(valdAnnons);
+                        VisaReservationsbekraftelse(affar);
                         break;
 
                     case 0:
-                        programmetKor = false;
-                        Console.WriteLine("Programmet avslutas.");
+                        running = false;
+                        Console.WriteLine("Du valde att avsluta programmet.");
                         break;
 
                     default:
-                        Console.WriteLine("Ogiltigt menyval.");
+                        Console.WriteLine("Ogiltigt val.");
                         break;
                 }
             }
@@ -100,53 +70,37 @@
         {
             BookSwapRegister register = new BookSwapRegister();
 
-            Student saljare1 = new Student(
-                "Anna",
-                "Andersson",
-                "anna@example.com",
-                "070-1111111");
+            Student saljare1 = new Student("Anna","Andersson","annaa99@gmail.com","070-1122334");
 
-            Student saljare2 = new Student(
-                "Bertil",
-                "Berg",
-                "bertil@example.com",
-                "070-2222222");
+            Student saljare2 = new Student("Bertil","Berg","berraberg@gmail.com","070-2222222");
 
-            Student saljare3 = new Student(
-                "Cecilia",
-                "Carlsson",
-                "cecilia@example.com",
-                "070-3333333");
+            Student saljare3 = new Student("Cecilia","Carlsson","ceca123@gmail.com","070-3333333");
 
-            Kurs kurs1 = new Kurs(
-                "C1OB1B",
-                "Objektorienterad systemutveckling 1");
+            Kurs kurs1 = new Kurs("C1OB1B","Objektorienterad systemutveckling 1");
 
-            Kurs kurs2 = new Kurs(
-                "C2PRG",
-                "Programmering");
+            Kurs kurs2 = new Kurs("NGC011","Grundläggande programmering med C#");
 
             Kursbok kursbok1 = new Kursbok(
                 saljare1,
                 kurs1,
-                "Objektorienterad analys och design",
-                250m,
+                "Object-oriented analysis and design with applications",
+                545m,
                 AnnonsSkick.BraSkick,
                 DateTime.Today,
-                "978-1234567890",
-                "Anna Författare",
-                2);
+                "9780201895513",
+                "Grady Booch",
+                3);
 
             Kursbok kursbok2 = new Kursbok(
                 saljare2,
                 kurs1,
-                "C# från grunden",
-                300m,
+                "Pro C# 10 with .NET 6",
+                586m,
                 AnnonsSkick.Nyskick,
                 DateTime.Today,
-                "978-0987654321",
-                "Bertil Författare",
-                1);
+                "9781484278680",
+                "Andrew Troelsen",
+                11);
 
             Kompendium kompendium = new Kompendium(
                 saljare3,
@@ -172,12 +126,12 @@
             Kursbok koparensAnnons = new Kursbok(
                 kopare,
                 kurs2,
-                "Min gamla kursbok",
-                150m,
+                "Skarp programmering med C#",
+                609m,
                 AnnonsSkick.BraSkick,
                 DateTime.Today,
-                "978-1111111111",
-                "En annan författare",
+                "9789144052601",
+                "Jan Skansholm",
                 1);
 
             register.LaggTillAnnons(kursbok1);
@@ -201,12 +155,6 @@
 
         private static void VisaAnnonser(List<Annons> annonser)
         {
-            if (annonser.Count == 0)
-            {
-                Console.WriteLine("Det finns inga tillgängliga annonser.");
-                return;
-            }
-
             Console.WriteLine();
             Console.WriteLine("Tillgängliga annonser:");
 
@@ -214,8 +162,7 @@
             {
                 Annons annons = annonser[i];
 
-                Console.WriteLine(
-                    $"{i + 1}. {annons.Titel} | " +
+                Console.WriteLine($"{i + 1}. {annons.Titel} | " +
                     $"Pris: {annons.Pris} kr | " +
                     $"Skick: {annons.Skick} | " +
                     $"Säljare: {annons.Saljare.Fornamn} " +
@@ -228,13 +175,9 @@
             Console.WriteLine();
             Console.WriteLine("Reservation genomförd.");
             Console.WriteLine($"Annons: {affar.Annons.Titel}");
-            Console.WriteLine(
-                $"Köpare: {affar.Kopare.Fornamn} {affar.Kopare.Efternamn}");
-            Console.WriteLine(
-                $"Säljare: {affar.Annons.Saljare.Fornamn} " +
-                $"{affar.Annons.Saljare.Efternamn}");
-            Console.WriteLine(
-                $"Reservationsdatum: {affar.Reservationsdatum}");
+            Console.WriteLine($"Köpare: {affar.Kopare.Fornamn} {affar.Kopare.Efternamn}");
+            Console.WriteLine($"Säljare: {affar.Annons.Saljare.Fornamn} " + $"{affar.Annons.Saljare.Efternamn}");
+            Console.WriteLine($"Reservationsdatum: {affar.Reservationsdatum}");
             Console.WriteLine($"Affärsstatus: {affar.Status}");
             Console.WriteLine($"Annonsstatus: {affar.Annons.Status}");
         }
