@@ -160,13 +160,11 @@
 
             for (int i = 0; i < annonser.Count; i++)
             {
-                Annons annons = annonser[i];
-
-                Console.WriteLine($"{i + 1}. {annons.Titel} | " +
-                    $"Pris: {annons.Pris} kr | " +
-                    $"Skick: {annons.Skick} | " +
-                    $"Säljare: {annons.Saljare.Fornamn} " +
-                    $"{annons.Saljare.Efternamn}");
+                Console.WriteLine($"{i + 1}. {annonser[i].Titel} | " +
+                    $"Pris: {annonser[i].Pris} kr | " +
+                    $"Skick: {annonser[i].Skick} | " +
+                    $"Säljare: {annonser[i].Saljare.Fornamn} " +
+                    $"{annonser[i].Saljare.Efternamn}");
             }
         }
 
