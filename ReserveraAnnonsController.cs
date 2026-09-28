@@ -17,11 +17,15 @@ namespace ReserveraAnnons
 
         public List<Annons> ListaTillgangligaAnnonser()
         {
-            return Register.HamtaTillgangligaAnnonser(InloggadStudent);
+            return Register.HamtaTillgangligaAnnonser();
         }
 
         public Affar ReserveraAnnons(Annons valdAnnons)
         {
+            if (!valdAnnons.KanReserverasAv(InloggadStudent))
+            {
+                throw new InvalidOperationException();
+            }
             Affar nyAffar = new Affar(InloggadStudent, valdAnnons, DateTime.Now);
 
             valdAnnons.MarkeraSomReserverad();

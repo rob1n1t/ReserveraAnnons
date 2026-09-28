@@ -50,8 +50,16 @@
                         }
 
                         Annons valdAnnons = tillgangligaAnnonser[annonsnummer - 1];
-                        Affar affar = controller.ReserveraAnnons(valdAnnons);
-                        VisaReservationsbekraftelse(affar);
+                        try
+                        {
+                            Affar affar = controller.ReserveraAnnons(valdAnnons);
+                            VisaReservationsbekraftelse(affar);
+                        }
+                        catch (InvalidOperationException)
+                        {
+                            Console.WriteLine("Du kan inte reservera din egen annons.");
+                        }
+
                         break;
 
                     case 0:

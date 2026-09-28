@@ -24,16 +24,13 @@ namespace ReserveraAnnons
         }
 
         // Metod ska ge tillbaka en lista med Annons-objekt.
-        public List<Annons> HamtaTillgangligaAnnonser(Student kopare)
+        public List<Annons> HamtaTillgangligaAnnonser()
         {
             List<Annons> tillgangliga = new List<Annons>();
 
             foreach (Annons aktuellAnnons in Annonser)
             {
-                bool arTillSalu = aktuellAnnons.Status == AnnonsStatus.TillSalu; //
-                bool kanReserveras = aktuellAnnons.KanReserverasAv(kopare);  // se så köpare och säljare ej är samma person 
-
-                if (arTillSalu && kanReserveras)
+              if (aktuellAnnons.Status == AnnonsStatus.TillSalu)
                 {
                     tillgangliga.Add(aktuellAnnons);
                 }
